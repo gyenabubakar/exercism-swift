@@ -1,33 +1,37 @@
 let paymentPeriodinYears = 5.0
+let monthsInYear = 12.0
 
 func canIBuy(vehicle: String, price: Double, monthlyBudget: Double) -> String {
-  let totalAmountIn5Years = monthlyBudget * 12 * paymentPeriodinYears
+  let totalBudget = monthlyBudget * monthsInYear * paymentPeriodinYears
 
-  if totalAmountIn5Years >= price {
+  switch price {
+  case let p where p <= totalBudget:
     return "Yes! I'm getting a \(vehicle)"
-  }
-
-  let affordabilityGap = price - totalAmountIn5Years
-  let affordabilityGapPercentage = (affordabilityGap / totalAmountIn5Years) * 100
-
-  if affordabilityGapPercentage <= 10 {
+  case let p where p <= totalBudget * 1.1:
     return "I'll have to be frugal if I want a \(vehicle)"
+  default:
+    return "Darn! No \(vehicle) for me"
   }
-
-  return "Darn! No \(vehicle) for me"
 }
 
 func licenseType(numberOfWheels wheels: Int) -> String {
+  var vehicleType: String? = nil
+
   switch wheels {
   case 2, 3:
-    return "You will need a motorcycle license for your vehicle"
+    vehicleType = "a motorcycle"
   case 4, 6:
-    return "You will need an automobile license for your vehicle"
+    vehicleType = "an automobile"
   case 18:
-    return "You will need a commercial trucking license for your vehicle"
+    vehicleType = "a commercial trucking"
   default:
+    vehicleType = nil
+  }
+
+  guard let vehicleType else {
     return "We do not issue licenses for those types of vehicles"
   }
+  return "You will need \(vehicleType) license for your vehicle"
 }
 
 func registrationFee(msrp: Int, yearsOld: Int) -> Int {
