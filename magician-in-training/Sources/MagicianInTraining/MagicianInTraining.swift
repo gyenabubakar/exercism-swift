@@ -1,35 +1,63 @@
 func getCard(at index: Int, from stack: [Int]) -> Int {
-  fatalError("Please implement the getCard(at:from:) function")
+  stack[index]
 }
 
 func setCard(at index: Int, in stack: [Int], to newCard: Int) -> [Int] {
-  fatalError("Please implement the setCard(at:from:to:) function")
+  guard stack.indices.contains(index) else {
+    return stack
+  }
+
+  var stack = Array(stack)
+  stack[index] = newCard
+  return stack
 }
 
 func insert(_ newCard: Int, atTopOf stack: [Int]) -> [Int] {
-  fatalError("Please implement the insert(_:atTopOf:) function")
+  var stack = Array(stack)
+  stack.append(newCard)
+  return stack
 }
 
 func removeCard(at index: Int, from stack: [Int]) -> [Int] {
-  fatalError("Please implement the removeCard(at:from:) function")
+  guard stack.indices.contains(index) else {
+    return stack
+  }
+
+  var stack = Array(stack)
+  stack.remove(at: index)
+  return stack
 }
 
 func removeTopCard(_ stack: [Int]) -> [Int] {
-  fatalError("Please implement the removeTopCard(_) function")
+  guard stack.count > 0 else {
+    return stack
+  }
+
+  var stack = Array(stack)
+  stack.removeLast()
+  return stack
 }
 
 func insert(_ newCard: Int, atBottomOf stack: [Int]) -> [Int] {
-  fatalError("Please implement the insert(_:atBottomOf:) function")
+  var stack = Array(stack)
+  stack.insert(newCard, at: 0)
+  return stack
 }
 
 func removeBottomCard(_ stack: [Int]) -> [Int] {
-  fatalError("Please implement the removeBottomCard(_) function")
+  guard stack.count > 0 else {
+    return stack
+  }
+
+  var stack = Array(stack)
+  stack.removeFirst()
+  return stack
 }
 
 func checkSizeOfStack(_ stack: [Int], _ size: Int) -> Bool {
-  fatalError("Please implement the checkSizeOfStack(_:_:) function")
+  stack.count == size
 }
 
 func evenCardCount(_ stack: [Int]) -> Int {
-  fatalError("Please implement the evenCardCount(_) function")
+  stack.filter { $0 % 2 == 0 }.count
 }
