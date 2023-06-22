@@ -1,12 +1,22 @@
 import Foundation
 
 func cartesianToPolar(_ cart: (x: Double, y: Double)) -> (r: Double, phi: Double) {
-  fatalError("Please implement the cartesianToPolar(_:) function.")
+  let (x, y) = cart
+  let r = sqrt((x * x) + (y * y))
+  let phi = atan2(y, x)
+  return (r, phi)
 }
 
 func combineRecords(
   production: (toy: String, id: Int, productLead: String),
   gifts: (Int, [String])
 ) -> (id: Int, toy: String, productLead: String, recipients: [String]) {
-  fatalError("Please implement the combineRecords(production:gifts:) function.")
+  let (toy, id, productLead) = production
+  let (_, recipients) = gifts
+  return (
+    id,
+    toy,
+    productLead,
+    recipients
+  )
 }
